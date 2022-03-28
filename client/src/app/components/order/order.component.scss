@@ -1,0 +1,77 @@
+.all{
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+}
+
+.order{
+    width: 50vw;
+    height: 820px;
+    padding: 2%;
+    text-align: center;
+}
+
+.form{
+    width: 50vw;
+    height: 500px;
+    margin: 5% 15%;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px silver;
+}
+
+
+.cartitem{
+    width: 70%;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15%;
+}
+
+.mini{
+    width: 60px;
+    height: 60px;
+    border: 1px solid gainsboro;
+    border-radius: 50%;
+}
+
+.return{
+    position: absolute;
+    left: 40%;
+}
+
+.products{
+    padding: 2%;
+    width: 30vw;
+    margin-left: 15%;
+    height: 60%;
+    border-bottom: 1px solid silver;
+    border-top: 1px solid silver;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+p{
+    font-size: 10px;
+}
+
+.card{
+    margin: 1%;
+}
+.err{
+    font-size: 10px;
+    color: red;
+}
+
+.line {
+    background: linear-gradient(transparent 50%, yellow 10px);
+    display: inline;
+    white-space: pre-wrap;
+    background-position: right bottom;
+    transition: all 1s ease;
+}

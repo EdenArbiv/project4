@@ -1,0 +1,33 @@
+<div class="login">
+    <div *ngIf="this._data.local">
+        <button mat-raised-button *ngIf="this._data.local.opencart == 0  && this._data.local.role == 'user'"  (click)="_data.newCart()">Start shopping</button>
+        <button mat-raised-button *ngIf="this._data.local.opencart == 1 && this._data.local.role == 'user'"  (click)="router.navigate(['/shop']);">Resume shopping</button>
+        <button mat-raised-button *ngIf="this._data.local.role == 'admin'"  (click)="router.navigate(['/shop']);">Hello Admin! Enter the shop here.</button>
+        <br><br>
+    </div>
+    <div class="form">
+        <form [formGroup]="form" >
+        <br>
+        <h1>Login</h1>
+    <mat-form-field appearance="fill">
+        <mat-label>ID</mat-label>
+        <input type="number" formControlName="id" matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        </mat-form-field>
+        <p *ngIf="_data.error" class="err">{{_data.error}}</p>
+        <br>
+      <button (click)="_data.loginUser(form.value)" mat-raised-button color="primary">Login</button>
+      <br><br>
+      <span>Don't have an account yet? <a (click)="_data.error=''"  routerLink="/home/register">Register Now</a></span>
+      <br><br>
+    
+      </form>
+    </div> 
+</div>

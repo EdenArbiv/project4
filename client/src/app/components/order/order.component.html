@@ -1,0 +1,60 @@
+<div class="all">
+    <div class="order">
+        <button mat-raised-button class="return" (click)="router.navigate(['/shop'])" >Back to Shop</button>
+        <h1>Order Details</h1>
+        <form *ngIf="this._data.local" #myform="ngForm" class="searchinp">
+            <mat-form-field>
+              <mat-icon matSuffix >search</mat-icon>
+              <input (keyup)="_data.searchInCart(myform.value)" name="search"  matInput type="search" placeholder="search here" class="search-input" ngModel>
+            </mat-form-field>
+        </form> 
+        <div class="products">
+        <mat-card class="cartitem" *ngFor="let item of _data.cartitems"><img class="mini" src={{item.image}} alt="item"><span [ngClass]="_data.cartitems.length < _data.numofmyprod && 'line'"><b>{{item.name}}</b></span><span>x{{item.qt}}</span> <span>{{item.price*item.qt| number : '1.2-2' }}₪</span></mat-card>
+        </div>
+        <br>
+        <h5><b>the total price: {{_data.thetotalprice | number : '1.2-2'}} ₪</b></h5>
+    </div>
+    <div class="form">   
+
+    <form [formGroup]="form">
+        <br>
+        <h1>Order</h1>
+        <p>*Double Click on the fileds to Automatic complete</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter Shipping City</mat-label>
+            <input (dblclick)="dbclick()" [ngModel]="db ? _data.userdata[0].city : ''" type="text" formControlName="city" matInput>
+        </mat-form-field>
+        <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter Shipping street</mat-label>
+        <input (dblclick)="dbclick()" [ngModel]="db ? _data.userdata[0].street : ''" type="text" formControlName="street" matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter Shipping Date</mat-label>
+        <input type="date" [min]="today" [ngModel]="db && today" formControlName="date" matInput>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="card" appearance="fill">
+        <mat-label>Select Type</mat-label>
+        <mat-select formControlName="cardType" >
+          <mat-option *ngFor="let type of creditCardTypes" [value]="type">{{type}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+      <mat-form-field class="card" appearance="fill">
+        <mat-label>Credit Card</mat-label>
+        <input #num  type="number" formControlName="creditCard" matInput >
+    </mat-form-field>
+    <br>
+    <p class="err" *ngIf="_data.error">{{_data.error}}</p>
+    <mat-progress-bar *ngIf="_data.progressbar" mode="indeterminate"></mat-progress-bar>
+    <br>
+    <button mat-raised-button class="Applyorder" (click)="applyFunc(form.value)" >Apply Order</button>
+
+    </form>
+    </div>
+</div>
+
+

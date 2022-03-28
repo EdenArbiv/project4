@@ -1,0 +1,35 @@
+<div class="add" *ngIf="this._data.data" >
+    <h1>Edit Product:</h1>
+    <br>
+    <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+        <mat-label>Name of Product</mat-label>
+        <input [ngModel]="this._data.data[0].name" type="text" formControlName="name" matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter price</mat-label>
+        <input [ngModel]="this._data.data[0].price" type="number" formControlName="price" matInput>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Enter Image URL</mat-label>
+        <input [ngModel]="this._data.data[0].image" type="text" formControlName="image" matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label >Select Type </mat-label>
+        <mat-select [(value)]="_data.data[0].category_id" formControlName="category_id">
+          <mat-option disabled>Please select type</mat-option>
+          <mat-option [value]="type.id" *ngFor="let type of _data.types">{{type.category_name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <p class="err" *ngIf="_data.error">{{_data.error}}</p>
+    <button mat-raised-button (click)="_data.edititem(form.value)">Edit Product</button>
+    </form>
+    <button mat-icon-button class="close" (click)="cancel()" >
+        <mat-icon>close</mat-icon>
+    </button>
+</div>

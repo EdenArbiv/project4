@@ -1,0 +1,35 @@
+<div class="add" >
+    <h1>Add New Product:</h1>
+    <br>
+    <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+        <mat-label>Name of Product</mat-label>
+        <input type="text" formControlName="name" matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label ng-model="mynumber">Enter price</mat-label>
+        <input type="number" formControlName="price" matInput>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Enter Image URL</mat-label>
+        <input type="text" formControlName="image" matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label >Select Type </mat-label>
+        <mat-select formControlName="category_id">
+          <mat-option selected disabled>Please select type</mat-option>
+          <mat-option value={{type.id}} *ngFor="let type of _data.types">{{type.category_name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <p class="err" *ngIf="_data.error">{{_data.error}}</p>
+    <button mat-raised-button (click)="_data.additem(form.value)">Add Product</button>
+    </form>
+    <button mat-icon-button class="close" (click)="cancel()" >
+        <mat-icon>close</mat-icon>
+    </button>
+</div>

@@ -1,0 +1,35 @@
+.allpage{
+    height: 88vh;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+    'login description data'
+    ;
+}
+
+.login{
+  grid-area: login;
+  padding: 10% 5%;
+  text-align: center;
+}
+
+.description{
+    grid-area: description;
+    padding: 10% 5%;
+    text-align: center;
+}
+
+.data{
+    grid-area: data;
+    padding: 10% 5%;
+    text-align: center;
+}
+
+.image{
+    width: 300px;
+}
+
+.r{
+    font-size: 10px;
+}

@@ -1,0 +1,9 @@
+<mat-card class="card">
+    <img class="image" mat-card-image src={{item.image}}>
+    <mat-card-title>{{item.name}}</mat-card-title>
+    <mat-card-content>{{item.price | number : '1.2-2'}} ₪</mat-card-content>
+    <mat-card-content>category: {{item.category_name}}</mat-card-content>
+   <mat-icon *ngIf="_data.local.role == 'user'" class="add" (click)="openPopUp(item.id)" >add_shopping_cart</mat-icon>
+   <mat-icon *ngIf="_data.local.role == 'admin'" class="add" (click)="openedit(item.id)" >edit</mat-icon>
+</mat-card>
+

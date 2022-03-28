@@ -1,0 +1,88 @@
+<div class="register">
+    <div class="form" *ngIf="!_data.next">
+        <form [formGroup]="form" >
+        <br>
+        <h1>Register</h1>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your ID</mat-label>
+            <input type="number" formControlName="id" matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your Email</mat-label>
+            <input type="email" formControlName="email" matInput>
+        </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input formControlName="password1" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>password again</mat-label>
+        <input formControlName="password2" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        </mat-form-field>
+        <p *ngIf="_data.error" class="err">{{_data.error}}</p>
+        
+        <br>
+      <button (click)="_data.register1(form.value)" mat-raised-button color="primary">continue  <mat-icon>send</mat-icon></button>
+      <br><br>
+      
+      <span>have an account? <a (click)="_data.error=''" routerLink="/home/login">Login Now</a></span>
+      <br><br>
+      </form>
+    </div> 
+    <div class="form" *ngIf="_data.next">
+        <form [formGroup]="form2" >
+        <br>
+        <h1>Step 2</h1>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Select</mat-label>
+            <mat-select formControlName="city">
+              <mat-option selected disabled>Please select city</mat-option>
+              <mat-option value="Tel Aviv">Tel Aviv</mat-option>
+              <mat-option value="Netanya">Netanya</mat-option>
+              <mat-option value="Hadera">Hadera</mat-option>
+              <mat-option value="Hadera">Herzliya</mat-option>
+              <mat-option value="Kfar Saba">Kfar Saba</mat-option>
+              <mat-option value="Afula">Afula</mat-option>
+              <mat-option value="Haifa">Haifa</mat-option>
+              <mat-option value="Jerusalem">Jerusalem</mat-option>
+              <mat-option value="Beer Sheva">Beer Sheva</mat-option>
+              <mat-option value="Jerusalem">Jerusalem</mat-option>
+              <mat-option value="Ashkelon">Ashkelon</mat-option>
+              <mat-option value="Ashdod">Ashdod</mat-option>
+              <mat-option value="Eilat">Eilat</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your Street</mat-label>
+            <input type="text" formControlName="street" matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your First name</mat-label>
+            <input type="text" formControlName="first_name" matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your Last name</mat-label>
+            <input type="text" formControlName="last_name" matInput>
+        </mat-form-field>
+      <br>
+   
+        <p *ngIf="_data.error" class="err">{{_data.error}}</p>
+        <br>
+      <button (click)="_data.register2(form2.value)" mat-raised-button color="primary">Submit</button>
+      <br><br>
+      <button mat-stroked-button (click)="_data.closeNext()">← return</button> 
+      </form>
+    </div> 
+</div>

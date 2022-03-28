@@ -1,0 +1,9 @@
+<div class="receipt">
+<h2>Your order has been accepted!</h2>
+<h5>Thank you for buying from us, your order has been received and someone is already working to pack it. We will send you an email as soon as the order is ready and you will set off with a courier</h5>
+    <div class="down">
+        <h3>To download the receipt, click here:</h3>
+        <button (click)="_data.getReceipt(_data.local.cartid)">Click</button>
+    </div>
+    <button mat-raised-button (click)="_data.newCart()">Return to the shop</button>
+</div>

@@ -1,0 +1,30 @@
+<div class="allpage">
+<div class="login"><router-outlet></router-outlet></div>
+<div class="description">
+    <h2>Why you should to buy in our store? </h2>
+    <br>
+    <ul>
+        <li>Shopping online is much better than going into stalls and shops to buy goods and ask for services to be rendered because it saves a lot of time. One can easily browse through different online shops and e-commerce stores to select whatever they want within the shortest possible time.</li>
+        <li>In addition, our prices are the cheapest in the country, you can compare and see for yourself!</li>
+        <li>Our deliveries arrive on the day of order!</li>
+    </ul>
+    <br><br>
+    <img class="image" src="https://www.ynet.co.il/PicServer5/2019/02/19/9074385/907438101001388640360no.jpg" alt="shufersal">
+    <p class="r">All rights reserved to Sufersal Online ©</p>
+
+</div>
+<div class="data">
+    <img class="image" src="https://dealcoupon.co.il/storage/medialibrary/635/conversions/shufersal-brand-show.jpg" alt="shufersal">
+    <br><br>
+    <h5>Available products in our store- </h5>
+    <h5><b>{{_data.numofproducts}} products</b></h5>
+    <h5>Number of orders submitted in our store- </h5>
+    <h5><b>{{_data.numoforders}} orders</b></h5>
+    <div *ngIf="this._data.local">
+    <h4>Welcome {{this._data.local.name}}</h4>
+    <h4 *ngIf="this._data.local.opencart" >you have open cart from {{this._data.local.opencartdate | date: 'dd/MM/yyyy HH:mm'}}</h4>
+    <h4 *ngIf="!this._data.local.opencart && this._data.local.opencartdate">your last purchase was on {{this._data.local.opencartdate | date: 'dd/MM/yyyy HH:mm'}}</h4>
+    </div>
+    
+</div>
+</div>

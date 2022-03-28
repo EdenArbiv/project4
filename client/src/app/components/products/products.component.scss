@@ -1,0 +1,181 @@
+.shop{
+    width: 100%;
+    height: 92vh;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 7% 93%;
+    grid-template-areas:
+    'sidebar items'
+    ;
+}
+
+
+.card{
+    width: 270px;
+    height: 370px;
+}
+
+.side{
+    grid-area: sidebar;
+  
+}
+
+.items{
+    transition: all .35s;
+    width: 100%;
+    position: relative;
+    grid-area: items;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+.sidebar, .content {
+    height: 100%;
+    overflow:auto;
+}
+  
+.sidebar {
+    height: 84vh;
+    position: fixed;
+    top: 65px;
+    left: 0;
+    background:white;
+    width: 25%;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.5);
+    transition: all .35s;
+    overflow-y: hidden;
+  
+}
+
+.collapsed {
+    height: 84vh;
+    position: fixed;
+    top: 65px;
+    left: 0;
+    background:white;
+    width: 7%;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.5);
+    transition: all .35s;
+}
+  
+.content {
+    background:gray;
+    width: 100%;
+}
+  
+button {
+    cursor:pointer;
+}
+  
+#closer {
+    float:right;
+    color: black;
+    top: 1%;
+    right: 2%;
+    width: 10px;
+}
+.btn{
+    width: 10px;
+    background-color:transparent;
+    border: none;
+}
+
+#btn{
+    width: 25px;
+    height: 25px;
+    float:right;
+    background-color: white;
+    color: black;
+    top: 1%;
+    right: 2%;
+}
+
+#mini{
+    font-size: 15px;
+}
+
+#payment{
+    background-color: white;
+    position: absolute;
+    top: 10px;
+    right: 70px;
+}
+
+#reset{
+    background-color: white;
+    position: absolute;
+    top: 10px;
+    right: 200px;
+}
+
+.itemcollapse{
+    width: 80%;
+    margin-left: 20%;
+    position: relative;
+    grid-area: items;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    transition: all .35s;
+}
+.cart{
+    padding: 5%;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(111, 197, 250) whitesmoke;
+}
+
+
+.mini{
+    width: 60px;
+    height: 60px;
+    border: 1px solid gainsboro;
+    border-radius: 50%;
+}
+
+.cartitem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.allitems{
+    width: 90%;
+    margin-top: 1%;
+    
+}
+
+.sort{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+h5{
+    text-align: center;
+
+}
+
+.addprod{
+    position: fixed;
+    top: 100px;
+    left: 5%;
+    background-color: rgb(111, 197, 250);
+}
+
+.btn{
+    font-size: 20px;
+    position: absolute;
+    left: 25%;
+    top: 25%;
+
+}

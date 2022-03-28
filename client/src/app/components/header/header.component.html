@@ -1,0 +1,25 @@
+<mat-toolbar class="app">
+    <mat-toolbar-row class="appbar">
+      <span><img src="https://kib.co.il/wp-content/uploads/2018/11/online.png" alt="logo"></span>
+      <span class="example-spacer"></span>
+        <div class="searchinp" *ngIf="router.url === '/shop'">
+      <form *ngIf="this._data.local" #myform="ngForm" >
+      <mat-form-field>
+        <mat-icon matSuffix>search</mat-icon>
+        <input (keyup)="_data.search(myform.value)" name="search"  matInput type="search" placeholder="search here" class="search-input" ngModel>
+        </mat-form-field>
+       </form>  
+        </div>
+      <div class="hello">
+        <p *ngIf="!this._data.local">Hello guset🖐</p>
+        <button *ngIf="this._data.local"  (click)="_data.logoutUser()" class="logout" mat-mini-fab aria-label="Example icon button with a home icon">
+            <mat-icon class="btn">logout</mat-icon>
+        </button>
+      </div>
+
+    <div class="contact" >
+        <p><b>Contact With Us:</b> </p>
+        <p><b>phone:</b> 04-633-2020 </p>
+        <p><b>email:</b> shufersalonline@gmail.com</p>
+    </div>
+</mat-toolbar-row>

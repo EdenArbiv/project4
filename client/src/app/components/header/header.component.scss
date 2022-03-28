@@ -1,0 +1,52 @@
+.appbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.app{
+    background-color: rgb(233, 231, 231);
+}
+
+img{
+    width: 25%;
+}
+.menu{
+    color: rgb(111, 197, 250);
+}
+
+.contact{
+    font-size: 11px;
+    width: 250px;
+    height: auto;
+    position: relative;
+    padding: 2%;
+    text-align: center;
+}
+
+.contact >*{
+    margin: -7%;
+}
+.hello{
+    font-size: 15px;
+    position: relative;
+    right: -7%;
+}
+
+.logout{
+    background-color: rgb(111, 197, 250);
+
+}
+
+.search{
+    font-size: 20px;
+
+}
+
+.searchinp{
+    height:70px;
+    position: relative;
+    top: 25%;
+    left: 10%;
+    font-size: 15px
+}
