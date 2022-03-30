@@ -13,8 +13,8 @@ export class DataService {
 
   constructor(public router:Router,  public snakebar:MatSnackBar, public dialog:MatDialog) { }
   error:string= "";
-  numofproducts:number
-  numoforders:number
+  numofproducts:number = 0
+  numoforders:number = 0
   next:boolean = false
   productsArr:Product[] = []
   cartitems:Product[] = []
@@ -46,7 +46,10 @@ export class DataService {
   }
 
   async homePage(){
-    const res = await fetch(`http://localhost:1000/`)
+    const res = await fetch(`http://localhost:1000/getData`,{
+      method:'GET',
+      credentials: 'include'
+    })
     const data = await res.json()
     console.log(data)
     this.numofproducts = data.products
@@ -326,7 +329,7 @@ export class DataService {
       this.getProductsAdmin()
       this.dialog.closeAll()
       this.error= "" 
-      this.opensnakebar(data.msg,'Dismiss');
+      this.opensnakebar(data.msg,'Ok');
     }
   }
 

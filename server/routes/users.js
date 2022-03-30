@@ -16,13 +16,17 @@ function validateEmail (emailAdress)
   }
 }
 
-router.get('/',async (req,res)=>{
+router.get('/getData',async (req,res)=>{
     try {
       const admin = await SQL(`SELECT * FROM users WHERE role = "admin"`)
         if(!admin.length){
         const hashed = await bcrypt.hash('123', 10)
         await SQL(`insert into users(id, first_name, last_name, email, password, city, street, role) values(315253740, 'Eden', 'Arbiv','edenarbiv123@gmail.com', '${hashed}', 'Hadera', 'Epshtein 5', 'admin' )`)
-    }  
+        }
+        const products = await SQL(`SELECT * FROM products`)
+        const orders = await SQL(`SELECT * FROM orders`)
+        res.send({products: products.length, orders: orders.length})
+      
     } catch (err) {
         console.log(err);
         res.sendStatus(500)
@@ -31,16 +35,6 @@ router.get('/',async (req,res)=>{
 })
 
 
-router.get('/',async (req,res)=>{
-    try {
-        const products = await SQL(`SELECT * FROM products`)
-        const orders = await SQL(`SELECT * FROM orders`)
-        res.send({products: products.length, orders: orders.length})
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500)
-    }
-})
 
 router.post('/register1',async (req,res)=> {
     try {

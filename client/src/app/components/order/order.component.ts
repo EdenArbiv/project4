@@ -2,8 +2,9 @@
 
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { FormGroup, FormBuilder, Validators, MaxLengthValidator } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-order',
@@ -18,7 +19,13 @@ export class OrderComponent implements OnInit {
     this._data.bringuserdata()
   }
   db:boolean
-  today:any = new Date().toISOString().split('T')[0]
+  today:any = new Date().toISOString().split('T')[0];
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 5 && day !== 6;
+  };
+
   creditCardTypes = [
     "Visa",
     "AmericanExpress",

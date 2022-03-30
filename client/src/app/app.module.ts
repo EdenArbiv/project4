@@ -25,7 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReceiptComponent } from './components/receipt/receipt.component';
 import { AddproductComponent } from './components/addproduct/addproduct.component';
 import { EditproductComponent } from './components/editproduct/editproduct.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -55,6 +55,7 @@ import { EditproductComponent } from './components/editproduct/editproduct.compo
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule
   
   ],
   providers: [],

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   localS:boolean = false
 
   ngOnInit(): void {
- 
+    this._data.homePage()
   }
 
 }
