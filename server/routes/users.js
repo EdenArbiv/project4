@@ -90,42 +90,6 @@ router.post('/register2',async (req,res)=> {
     }
 })
 
-router.post('/newcart',async (req,res)=> {
-    try {
-        const existcart = await SQL(`SELECT cart.id as cartid,
-        cart.date,
-        cart.open,
-        users.id,
-        users.first_name,
-        users.last_name,
-        users.email,
-        users.role
-        FROM cart
-        inner join users on user_id = users.id
-        WHERE user_id = ${req.session.idnum}
-        order by date DESC;`)
-        if(existcart.length){
-            if(!existcart[0].open){
-            await SQL(`insert into cart(user_id)
-            values(${req.session.idnum})`)
-            const cartid = await SQL(`SELECT * FROM cart WHERE user_id = ${req.session.idnum} ORDER BY date DESC`)
-            return res.send({msg:"new cart created!", cartid: cartid[0].id})
-            }else{
-            return res.send({msg:'welcome back'})
-            }
-        }else{
-            await SQL(`insert into cart(user_id)
-            values(${req.session.idnum})`)
-            const cartid = await SQL(`SELECT * FROM cart WHERE user_id = ${req.session.idnum}`)
-            return res.send({msg:"new cart created", cartid: cartid[0].id})
-        }
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500)
-    }
-})
-
-
 router.post('/login',async (req,res)=> {
     try {
         const {id, password} = req.body
@@ -164,9 +128,42 @@ router.post('/login',async (req,res)=> {
     }
 })
 
-router.get('/whoami', (req,res)=> {
-    res.send({msg:req.session.idnum})
+router.post('/newcart',async (req,res)=> {
+    try {
+        const existcart = await SQL(`SELECT cart.id as cartid,
+        cart.date,
+        cart.open,
+        users.id,
+        users.first_name,
+        users.last_name,
+        users.email,
+        users.role
+        FROM cart
+        inner join users on user_id = users.id
+        WHERE user_id = ${req.session.idnum}
+        order by date DESC;`)
+        if(existcart.length){
+            if(!existcart[0].open){
+            await SQL(`insert into cart(user_id)
+            values(${req.session.idnum})`)
+            const cartid = await SQL(`SELECT * FROM cart WHERE user_id = ${req.session.idnum} ORDER BY date DESC`)
+            return res.send({msg:"new cart created!", cartid: cartid[0].id})
+            }else{
+            return res.send({msg:'welcome back'})
+            }
+        }else{
+            await SQL(`insert into cart(user_id)
+            values(${req.session.idnum})`)
+            const cartid = await SQL(`SELECT * FROM cart WHERE user_id = ${req.session.idnum}`)
+            return res.send({msg:"new cart created", cartid: cartid[0].id})
+        }
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500)
+    }
 })
+
+
 
 router.delete('/logout',onlyLoggedUsers, (req,res)=> {
     if(req.session){

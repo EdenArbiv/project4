@@ -179,3 +179,8 @@ h5{
     top: 25%;
 
 }
+
+.sort :hover{
+    transition: 0.3s ease-in-out;
+    transform: scale(1.03);
+}

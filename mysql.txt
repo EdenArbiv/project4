@@ -1,139 +1,138 @@
--- create database shoponline;
--- use shoponline;
+create database shoponline;
+use shoponline;
 
--- create table users(
--- id int,
--- first_name varchar(50),
--- last_name varchar(50),
--- email varchar(50),
--- password varchar(200),
--- city varchar(50),
--- street varchar(50),
--- role varchar(10) default "user",
--- primary key(id)
--- );
+create table users(
+id int,
+first_name varchar(50),
+last_name varchar(50),
+email varchar(50),
+password varchar(200),
+city varchar(50),
+street varchar(50),
+role varchar(10) default "user",
+primary key(id)
+);
 
--- create table cart(
--- id int auto_increment,
--- user_id int,
--- date datetime default now(),
--- open boolean default true,
--- primary key(id),
--- foreign key(user_id) references users(id)
--- );
+create table cart(
+id int auto_increment,
+user_id int,
+date datetime default now(),
+open boolean default true,
+primary key(id),
+foreign key(user_id) references users(id)
+);
 
--- create table category(
--- id int auto_increment,
--- category_name varchar(50),
--- primary key(id)
--- );
+create table category(
+id int auto_increment,
+category_name varchar(50),
+primary key(id)
+);
 
--- create table products(
--- id int auto_increment,
--- name varchar(50),
--- category_id int,
--- price decimal(4,2),
--- image text(700),
--- primary key(id),
--- foreign key(category_id) references category(id)
--- );
+create table products(
+id int auto_increment,
+name varchar(50),
+category_id int,
+price decimal(4,2),
+image text(700),
+primary key(id),
+foreign key(category_id) references category(id)
+);
 
--- create table cartitems(
--- id int auto_increment,
--- product_id int ,
--- cart_id int,
--- qt int default 1,
--- primary key(id),
--- foreign key(product_id) references products(id),
--- foreign key(cart_id) references cart(id)
--- );
+create table cartitems(
+id int auto_increment,
+product_id int ,
+cart_id int,
+qt int default 1,
+primary key(id),
+foreign key(product_id) references products(id),
+foreign key(cart_id) references cart(id)
+);
 
--- create table orders(
--- id int auto_increment, 
--- cart_id int,
--- total_price int,
--- city varchar(50),
--- street varchar(50),
--- deliverydate varchar(50),
--- date datetime default now(),
--- payment varchar(20),
--- primary key(id),
--- foreign key(cart_id) references cart(id)
--- );
+create table orders(
+id int auto_increment, 
+cart_id int,
+total_price decimal(4,2),
+city varchar(50),
+street varchar(50),
+deliverydate varchar(50),
+date datetime default now(),
+payment varchar(20),
+primary key(id),
+foreign key(cart_id) references cart(id)
+);
 
--- insert into category(category_name)
--- values("Vegetables"),
--- ("Fruits"),
--- ("Milk"),
--- ("Eggs"),
--- ("Cereals"),
--- ("Sweets"),
--- ("Meat"),
--- ("Fish"),
--- ("Drinks"),
--- ("Cleaners"),
--- ("Bathroom utensils");
+insert into category(category_name)
+values("Vegetables"),
+("Fruits"),
+("Milk"),
+("Eggs"),
+("Cereals"),
+("Sweets"),
+("Meat"),
+("Fish"),
+("Drinks"),
+("Cleaners"),
+("Bathroom utensils");
 
--- insert into products(name, category_id, price, image)
--- values("Tomatoes", 1, 4.90, "https://d3m9l0v76dty0.cloudfront.net/system/photos/4768591/large/b2b4506d8086ef8c207a453bae793ed3.jpg"),
--- ("Lettuce", 1, 3.90, "https://www.sigalit-71.co.il/wp-content/uploads/2020/09/%D7%97%D7%A1%D7%94-%D7%9C%D7%91%D7%91%D7%95%D7%AA.jpg"),
--- ("Cucumbers", 1, 3.50, "https://d3m9l0v76dty0.cloudfront.net/system/photos/3809886/large/aad0fb68c0eb3b4eaa236c46b1a81414.jpg"),
--- ("Gambs", 1, 4.10, "https://d3m9l0v76dty0.cloudfront.net/system/photos/6716678/large/12e854762f06af744c0b2cada725e0cc.jpg"),
--- ("Onions", 1, 2.90, "https://m.pricez.co.il/ProductPictures/Pricez65726.jpg"),
--- ("Cherry tomatoes", 1, 6.20, "https://storage.googleapis.com/sp-public/product-images/global/894969/2364205/large.jpg"),
--- ("Bananas", 2, 6.90, "https://www.lemonana.co.il/cache/w_1500/%D7%91%D7%A0%D7%A0%D7%94(1).jpg"),
--- ("Apples", 2, 5.90, "https://st1.foodsd.co.il/Images/Products/large/1IMNGegYIhf2dYrc.jpg"),
--- ("Strawberries", 2, 15.90, "https://yerakot-mehasade.co.il/wp-content/uploads/2019/11/H116-strawberry-1-1024x682.jpg"),
--- ("Oranges", 2, 11.90, "https://www.ayaakov.co.il/files/products/product35_image1_2020-03-06_13-00-54.jpg"),
--- ("Milk", 3, 5.50, "https://www.egozhakfar.co.il/wp-content/uploads/2021/02/7290000042442.jpg"),
--- ("Ski white cheese", 3, 3.70, "https://m.pricez.co.il/ProductPictures/7290002824640.jpg"),
--- ("Ski cottage", 3, 5.10, "https://m.pricez.co.il/ProductPictures/7290011194246.jpg"),
--- ("Tnuva cream 15%", 3, 4.30, "https://m.pricez.co.il/ProductPictures/7290004125455.jpg"),
--- ("Yellow cheese", 3, 12.90 , "https://m.pricez.co.il/ProductPictures/7290004125776.jpg"),
--- ("Milky", 3, 4.50, "https://storage.googleapis.com/sp-public/gs1-products/1062/large/72940952.jpg?_a=1647212682306"),
--- ("Daniela", 3, 5.90, "https://storage.googleapis.com/sp-public/gs1-products/1219/large/7290011194215.jpg?_a=1645107212294"),
--- ("12 Eggs", 4, 12.30, "https://taibemall.com/market/wp-content/uploads/2020/04/eggs12large.png"),
--- ("30 Eggs", 4, 21.30, "https://www.shuk-har-nof.co.il/wp-content/uploads/2022/01/303030.jpeg"),
--- ("Pasta", 5, 7.40, "https://osemcat.signature-it.com/images/Fittings/osem-hq/Upload_Pictures/Prod_Pic/12400878/Catalog/12400878_7290105694614_1_Enlarge.jpg"),
--- ("Shell pasta", 5, 7.80, "https://osemcat.signature-it.com/images/Fittings/osem-hq/Upload_Pictures/Prod_Pic/6909318/Catalog/6909318_7290000060859_1_Enlarge.jpg"),
--- ("Basmati rice", 5, 6.20, "https://static.wixstatic.com/media/d3e4d2_332a544ae2b9417c8d3bd4279e312f26~mv2.png/v1/fill/w_800,h_600,al_c/d3e4d2_332a544ae2b9417c8d3bd4279e312f26~mv2.png"),
--- ("Flakes", 5, 5.40, "https://osemcat.signature-it.com/images/Fittings/osem-hq/Upload_Pictures/Prod_Pic/6902225/Catalog/6902225_7290000060200_1_Enlarge.jpg"),
--- ("Couscous", 5, 6.50, "https://m.pricez.co.il/ProductPictures/7290000064758.jpg"),
--- ("Click Chocolate", 6, 6.30, "https://www.epharma.co.il/media/catalog/product/cache/f54201e6e55bf6d26c652ab711ed0cbf/_/-/_-_-_-65-_-50491570.jpg"),
--- ("Milk Chocolate", 6, 5.40, "https://www.israelhayom.co.il/wp-content/uploads/2022/02/15910962247046_b.jpg"),
--- ("4 Dark Chocolate", 6, 16.90, "https://m.pricez.co.il/ProductPictures/7290000178134.jpg"),
--- ("Locker Waffle", 6, 14.90, "https://aviram.blob.core.windows.net/product-images/8000380180745.png"),
--- ("Chocolates", 6,17.90, "https://m.pricez.co.il/ProductPictures/7290106720695.jpg"),
--- ("Sliced Bread", 5, 10.90, "https://www.einbar.co.il/wp-content/uploads/2020/09/%D7%9C%D7%97%D7%9D-%D7%90%D7%97%D7%99%D7%93-%D7%A4%D7%A8%D7%95%D7%A1-%D7%9C%D7%90%D7%AA%D7%A8.jpg"),
--- ("Whole wheat bread", 5, 11.90, "https://m.pricez.co.il/ProductPictures/7290016967074.jpg"),
--- ("Sminced meat", 7, 19.90, "https://i1.wp.com/mysuper.co.il/wp-content/uploads/2020/09/%D7%98%D7%97%D7%95%D7%9F-500-%D7%92%D7%A8%D7%9D-1.png?fit=350%2C350&ssl=1"),
--- ("Chicken Thighs", 7, 18.50, "http://www.oftov.co.il/_media/media/121/1885.jpg?t=1551690562"),
--- ("Schnitzels", 7, 18.90, "https://d3m9l0v76dty0.cloudfront.net/system/photos/4895606/large/8d964fa58f0018309896f920bfc35eae.jpg"),
--- ("Kebabs", 7, 15.90, "https://soglowek.co.il/wp-content/uploads/products/7290006738615.jpg"),
--- ("Amnon fish", 8, 11.90, "https://m.pricez.co.il/ProductPictures/7290000654546.jpg"),
--- ("Salmon", 8, 21.90, "https://aviram.blob.core.windows.net/product-images/7290008323352.png"),
--- ("Fish balls", 8, 19.50, "https://m.pricez.co.il/ProductPictures/7290002757511.jpg"),
--- ("Coca Cola", 9, 8.90, "https://alufnuts.co.il/wp-content/uploads/2020/06/coca_cola.jpg"),
--- ("Cola Zero", 9, 8.90, "https://d3m9l0v76dty0.cloudfront.net/system/photos/4578832/show/c4fbc44d63280b0d2df23628111f9665.jpg"),
--- ("Banana strawberry", 9, 7.80, "https://hinawi.co.il/wp-content/uploads/2020/10/20200716_124157-600x747.jpg"),
--- ("Squeezed oranges", 9, 22.90, "https://m.pricez.co.il/ProductPictures/7290001045220.jpg"),
--- ("Shiraz red wine", 9, 43.90, "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XDD28_Z_P_8804332_1.png"),
--- ("Chardonnay white wine", 9, 35.90, "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AXF42_Z_P_4658946_1.png"),
--- ("Apple juice", 9, 18.90, "https://primor.co.il/wp-content/uploads/2016/08/IMG_8043shadow.png"),
--- ("Body soap", 11, 12.20, "https://www.tamra-pharm.co.il/GoopSitesFiles/83736/User/catalog_446884-l.jpg?637391473236530000"),
--- ("Hand soap", 11, 10.90, "https://h7z8m6j8.stackpathcdn.com/wp-content/uploads/2019/04/PFW22_Z_P_5424403_1.png"),
--- ("Pnina Body soap", 11, 13.20, "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XCW26_Z_P_6185501_1.png"),
--- ("Floor cleaner- Ritzpaz", 10, 21.50, "https://cdn.istores.co.il/image/upload/if_ar_gt_2:1/c_fill,h_662,w_555/c_fill,h_662,w_555/if_else/c_fill,q_100,w_555/if_end/dpr_2/v1638964934/clients/103750/2c6738fd227209c407578fa9f31f0a693d5fe054.jpg"),
--- ("Sanobon", 10, 25.90, "https://cdn.azrieli.com/Images/d8effebc-5557-4bd5-8656-55fa3eff74a9/Normal/6f6874d7.jpg"),
--- ("Dish soap", 10, 13.90, "https://cdn.azrieli.com/Images/7510b5f5-0c5f-4818-b78e-ded7660bd461/Normal/cdf7b1ae.jpg"),
--- ("Bleach", 10, 24.90, "https://storage.googleapis.com/sp-public/gs1-products/1107/large/7290000288024.jpg?_a=1642058000439"),
--- ("Floor rags", 10, 20.90, "https://www.sano.co.il/media/7290108352672.jpg"),
--- ("Colgate toothpaste", 11, 17.30, "https://topharm.co.il/image/cache/catalog/Products_3/PERSONAL%20CARE/COLGATE/%D7%A7%D7%95%D7%9C%D7%92%D7%99%D7%99%D7%98-%D7%90%D7%93%D7%95%D7%9E%D7%94-%D7%9E%D7%A9%D7%97%D7%AA-%D7%A9%D7%99%D7%A0%D7%99%D7%99%D7%9D-%D7%9C%D7%94%D7%92%D7%A0%D7%94-%D7%9E%D7%A7%D7%A1%D7%99%D7%9E%D7%9C%D7%99%D7%AA-%D7%9E%D7%A4%D7%A0%D7%99-%D7%A2%D7%A9%D7%A9%D7%AA-100-%D7%9E%D7%9C-%D7%9E%D7%91%D7%99%D7%AA-Colgate-1000x1000.jpg"),
--- ("Sensodine toothpaste", 11, 15.90, "https://cdn.azrieli.com/Images/4f0e2380-6810-46cc-8a92-0e97c99074a7/Normal/90687b37.jpg"),
--- ("Toothbrushes", 11, 16.40, "https://img.zap.co.il/pics/7/0/9/2/49182907c.gif"),
--- ("Toilet Paper", 11, 28.90, "https://www.ecopharm.co.il/GoopSitesFiles/83563/User/catalog_755959-l.jpg?637044832996730000"),
--- ("Paper towels", 10, 18.90, "https://cdn.azrieli.com/Images/d5650ea1-eb79-4ed5-ab89-63a9d4471d5d/Normal/f44660b5.jpg"),
--- ("Wet wipes", 10, 23.90, "https://www.o-pharm.co.il/ProductsImages/V9560_24102021113639.jpg"),
--- ("Scots", 10, 15.50, "https://www.bela.co.il/ItemPics/7290000286228.png");
-
+insert into products(name, category_id, price, image)
+values("Tomatoes", 1, 4.90, "https://d3m9l0v76dty0.cloudfront.net/system/photos/4768591/large/b2b4506d8086ef8c207a453bae793ed3.jpg"),
+("Lettuce", 1, 3.90, "https://www.sigalit-71.co.il/wp-content/uploads/2020/09/%D7%97%D7%A1%D7%94-%D7%9C%D7%91%D7%91%D7%95%D7%AA.jpg"),
+("Cucumbers", 1, 3.50, "https://d3m9l0v76dty0.cloudfront.net/system/photos/3809886/large/aad0fb68c0eb3b4eaa236c46b1a81414.jpg"),
+("Gambs", 1, 4.10, "https://d3m9l0v76dty0.cloudfront.net/system/photos/6716678/large/12e854762f06af744c0b2cada725e0cc.jpg"),
+("Onions", 1, 2.90, "https://m.pricez.co.il/ProductPictures/Pricez65726.jpg"),
+("Cherry tomatoes", 1, 6.20, "https://storage.googleapis.com/sp-public/product-images/global/894969/2364205/large.jpg"),
+("Bananas", 2, 6.90, "https://www.lemonana.co.il/cache/w_1500/%D7%91%D7%A0%D7%A0%D7%94(1).jpg"),
+("Apples", 2, 5.90, "https://st1.foodsd.co.il/Images/Products/large/1IMNGegYIhf2dYrc.jpg"),
+("Strawberries", 2, 15.90, "https://yerakot-mehasade.co.il/wp-content/uploads/2019/11/H116-strawberry-1-1024x682.jpg"),
+("Oranges", 2, 11.90, "https://www.ayaakov.co.il/files/products/product35_image1_2020-03-06_13-00-54.jpg"),
+("Milk", 3, 5.50, "https://www.egozhakfar.co.il/wp-content/uploads/2021/02/7290000042442.jpg"),
+("Ski white cheese", 3, 3.70, "https://m.pricez.co.il/ProductPictures/7290002824640.jpg"),
+("Ski cottage", 3, 5.10, "https://m.pricez.co.il/ProductPictures/7290011194246.jpg"),
+("Tnuva cream 15%", 3, 4.30, "https://m.pricez.co.il/ProductPictures/7290004125455.jpg"),
+("Yellow cheese", 3, 12.90 , "https://m.pricez.co.il/ProductPictures/7290004125776.jpg"),
+("Milky", 3, 4.50, "https://storage.googleapis.com/sp-public/gs1-products/1062/large/72940952.jpg?_a=1647212682306"),
+("Daniela", 3, 5.90, "https://storage.googleapis.com/sp-public/gs1-products/1219/large/7290011194215.jpg?_a=1645107212294"),
+("12 Eggs", 4, 12.30, "https://taibemall.com/market/wp-content/uploads/2020/04/eggs12large.png"),
+("30 Eggs", 4, 21.30, "https://www.shuk-har-nof.co.il/wp-content/uploads/2022/01/303030.jpeg"),
+("Pasta", 5, 7.40, "https://osemcat.signature-it.com/images/Fittings/osem-hq/Upload_Pictures/Prod_Pic/12400878/Catalog/12400878_7290105694614_1_Enlarge.jpg"),
+("Shell pasta", 5, 7.80, "https://osemcat.signature-it.com/images/Fittings/osem-hq/Upload_Pictures/Prod_Pic/6909318/Catalog/6909318_7290000060859_1_Enlarge.jpg"),
+("Basmati rice", 5, 6.20, "https://static.wixstatic.com/media/d3e4d2_332a544ae2b9417c8d3bd4279e312f26~mv2.png/v1/fill/w_800,h_600,al_c/d3e4d2_332a544ae2b9417c8d3bd4279e312f26~mv2.png"),
+("Flakes", 5, 5.40, "https://osemcat.signature-it.com/images/Fittings/osem-hq/Upload_Pictures/Prod_Pic/6902225/Catalog/6902225_7290000060200_1_Enlarge.jpg"),
+("Couscous", 5, 6.50, "https://m.pricez.co.il/ProductPictures/7290000064758.jpg"),
+("Click Chocolate", 6, 6.30, "https://www.epharma.co.il/media/catalog/product/cache/f54201e6e55bf6d26c652ab711ed0cbf/_/-/_-_-_-65-_-50491570.jpg"),
+("Milk Chocolate", 6, 5.40, "https://www.israelhayom.co.il/wp-content/uploads/2022/02/15910962247046_b.jpg"),
+("4 Dark Chocolate", 6, 16.90, "https://m.pricez.co.il/ProductPictures/7290000178134.jpg"),
+("Locker Waffle", 6, 14.90, "https://aviram.blob.core.windows.net/product-images/8000380180745.png"),
+("Chocolates", 6,17.90, "https://m.pricez.co.il/ProductPictures/7290106720695.jpg"),
+("Sliced Bread", 5, 10.90, "https://www.einbar.co.il/wp-content/uploads/2020/09/%D7%9C%D7%97%D7%9D-%D7%90%D7%97%D7%99%D7%93-%D7%A4%D7%A8%D7%95%D7%A1-%D7%9C%D7%90%D7%AA%D7%A8.jpg"),
+("Whole wheat bread", 5, 11.90, "https://m.pricez.co.il/ProductPictures/7290016967074.jpg"),
+("Sminced meat", 7, 19.90, "https://i1.wp.com/mysuper.co.il/wp-content/uploads/2020/09/%D7%98%D7%97%D7%95%D7%9F-500-%D7%92%D7%A8%D7%9D-1.png?fit=350%2C350&ssl=1"),
+("Chicken Thighs", 7, 18.50, "http://www.oftov.co.il/_media/media/121/1885.jpg?t=1551690562"),
+("Schnitzels", 7, 18.90, "https://d3m9l0v76dty0.cloudfront.net/system/photos/4895606/large/8d964fa58f0018309896f920bfc35eae.jpg"),
+("Kebabs", 7, 15.90, "https://soglowek.co.il/wp-content/uploads/products/7290006738615.jpg"),
+("Amnon fish", 8, 11.90, "https://m.pricez.co.il/ProductPictures/7290000654546.jpg"),
+("Salmon", 8, 21.90, "https://aviram.blob.core.windows.net/product-images/7290008323352.png"),
+("Fish balls", 8, 19.50, "https://m.pricez.co.il/ProductPictures/7290002757511.jpg"),
+("Coca Cola", 9, 8.90, "https://alufnuts.co.il/wp-content/uploads/2020/06/coca_cola.jpg"),
+("Cola Zero", 9, 8.90, "https://d3m9l0v76dty0.cloudfront.net/system/photos/4578832/show/c4fbc44d63280b0d2df23628111f9665.jpg"),
+("Banana strawberry", 9, 7.80, "https://hinawi.co.il/wp-content/uploads/2020/10/20200716_124157-600x747.jpg"),
+("Squeezed oranges", 9, 22.90, "https://m.pricez.co.il/ProductPictures/7290001045220.jpg"),
+("Shiraz red wine", 9, 43.90, "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XDD28_Z_P_8804332_1.png"),
+("Chardonnay white wine", 9, 35.90, "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AXF42_Z_P_4658946_1.png"),
+("Apple juice", 9, 18.90, "https://primor.co.il/wp-content/uploads/2016/08/IMG_8043shadow.png"),
+("Body soap", 11, 12.20, "https://www.tamra-pharm.co.il/GoopSitesFiles/83736/User/catalog_446884-l.jpg?637391473236530000"),
+("Hand soap", 11, 10.90, "https://h7z8m6j8.stackpathcdn.com/wp-content/uploads/2019/04/PFW22_Z_P_5424403_1.png"),
+("Pnina Body soap", 11, 13.20, "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XCW26_Z_P_6185501_1.png"),
+("Floor cleaner- Ritzpaz", 10, 21.50, "https://cdn.istores.co.il/image/upload/if_ar_gt_2:1/c_fill,h_662,w_555/c_fill,h_662,w_555/if_else/c_fill,q_100,w_555/if_end/dpr_2/v1638964934/clients/103750/2c6738fd227209c407578fa9f31f0a693d5fe054.jpg"),
+("Sanobon", 10, 25.90, "https://cdn.azrieli.com/Images/d8effebc-5557-4bd5-8656-55fa3eff74a9/Normal/6f6874d7.jpg"),
+("Dish soap", 10, 13.90, "https://cdn.azrieli.com/Images/7510b5f5-0c5f-4818-b78e-ded7660bd461/Normal/cdf7b1ae.jpg"),
+("Bleach", 10, 24.90, "https://storage.googleapis.com/sp-public/gs1-products/1107/large/7290000288024.jpg?_a=1642058000439"),
+("Floor rags", 10, 20.90, "https://www.sano.co.il/media/7290108352672.jpg"),
+("Colgate toothpaste", 11, 17.30, "https://topharm.co.il/image/cache/catalog/Products_3/PERSONAL%20CARE/COLGATE/%D7%A7%D7%95%D7%9C%D7%92%D7%99%D7%99%D7%98-%D7%90%D7%93%D7%95%D7%9E%D7%94-%D7%9E%D7%A9%D7%97%D7%AA-%D7%A9%D7%99%D7%A0%D7%99%D7%99%D7%9D-%D7%9C%D7%94%D7%92%D7%A0%D7%94-%D7%9E%D7%A7%D7%A1%D7%99%D7%9E%D7%9C%D7%99%D7%AA-%D7%9E%D7%A4%D7%A0%D7%99-%D7%A2%D7%A9%D7%A9%D7%AA-100-%D7%9E%D7%9C-%D7%9E%D7%91%D7%99%D7%AA-Colgate-1000x1000.jpg"),
+("Sensodine toothpaste", 11, 15.90, "https://cdn.azrieli.com/Images/4f0e2380-6810-46cc-8a92-0e97c99074a7/Normal/90687b37.jpg"),
+("Toothbrushes", 11, 16.40, "https://img.zap.co.il/pics/7/0/9/2/49182907c.gif"),
+("Toilet Paper", 11, 28.90, "https://www.ecopharm.co.il/GoopSitesFiles/83563/User/catalog_755959-l.jpg?637044832996730000"),
+("Paper towels", 10, 18.90, "https://cdn.azrieli.com/Images/d5650ea1-eb79-4ed5-ab89-63a9d4471d5d/Normal/f44660b5.jpg"),
+("Wet wipes", 10, 23.90, "https://www.o-pharm.co.il/ProductsImages/V9560_24102021113639.jpg"),
+("Scots", 10, 15.50, "https://www.bela.co.il/ItemPics/7290000286228.png");
 

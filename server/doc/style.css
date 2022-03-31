@@ -1,0 +1,33 @@
+
+html {
+    font-family: 'helvetica neue', helvetica, arial, sans-serif;
+    padding: 0 5%;
+}
+  
+thead th, tfoot th {
+    font-family: 'Rock Salt', cursive;
+}
+  
+th {
+    letter-spacing: 2px;
+    border-bottom: 2px dashed black;
+    background-color: whitesmoke;
+}
+  
+td {
+    letter-spacing: 1px;
+}
+  
+tbody td {
+    text-align: center;
+}
+  
+tfoot th {
+    text-align: right;
+}
+
+tr:hover {background-color: #D6EEEE;}
+
+tr:nth-child(even) {
+    background-color: whitesmoke;
+}

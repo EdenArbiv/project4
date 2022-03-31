@@ -1,43 +1,191 @@
 <div class="shop">
+  <div
+    *ngIf="_data.local.role == 'user'"
+    class="sidebar"
+    [ngClass]="status ? 'collapsed' : 'sidebar'"
+  >
+    <div class="headercart">
+      <button
+        mat-button
+        class="btn"
+        (click)="clickEvent()"
+        *ngIf="status"
+        id="closer"
+      >
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+      <button mat-button (click)="clickEvent()" *ngIf="!status" id="closer">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="!status"
+        [disabled]="!_data.cartitems.length"
+        (click)="_data.resetCart(_data.local.cartid)"
+        id="reset"
+      >
+        Reset the Cart
+      </button>
+      <button
+        (click)="router.navigate(['/shop/order'])"
+        mat-raised-button
+        *ngIf="!status"
+        id="payment"
+        [disabled]="!_data.cartitems.length"
+      >
+        Go To Payment
+      </button>
+      <h1><b>Cart</b></h1>
+    </div>
+    <br />
+    <hr />
+    <div class="cart">
+      <mat-card class="cartitem" *ngFor="let item of _data.cartitems"
+        ><img class="mini" src="{{ item.image }}" alt="item" /><span
+          *ngIf="!status"
+          ><b>{{ item.name }}</b></span
+        ><span *ngIf="!status">x{{ item.qt }}</span>
+        <span *ngIf="!status"
+          >{{ item.price * item.qt | number: "1.2-2" }}₪</span
+        >
+        <span>
+          <button
+            mat-mini-fab
+            (click)="
+              _data.deleteFromCart({
+                cart_id: item.id,
+                product_id: item.product_id
+              })
+            "
+            *ngIf="!status"
+            id="btn"
+          >
+            <mat-icon id="mini">remove</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            (click)="
+              _data.addFromCart({
+                cart_id: item.id,
+                product_id: item.product_id
+              })
+            "
+            *ngIf="!status"
+            id="btn"
+          >
+            <mat-icon id="mini">add</mat-icon>
+          </button>
+        </span>
+      </mat-card>
+      <br />
+      <h5>
+        <b>the total price: {{ _data.thetotalprice | number: "1.2-2" }} ₪</b>
+      </h5>
+      <br /><br /><br />
+    </div>
+  </div>
+  <div *ngIf="_data.local.role == 'admin'">
+    <button (click)="openaddproduct()" class="addprod" mat-mini-fab>
+      <mat-icon class="btn">add</mat-icon>
+    </button>
+  </div>
 
-    <div *ngIf="_data.local.role == 'user'" class="sidebar" [ngClass]="status ? 'collapsed' : 'sidebar'">
-            <div class="headercart">
-            <button mat-button class="btn" (click)="clickEvent()" *ngIf="status" id="closer"><mat-icon>arrow_forward</mat-icon></button>
-            <button mat-button (click)="clickEvent()" *ngIf="!status" id="closer">		<mat-icon>arrow_back</mat-icon></button>
-            <button mat-raised-button *ngIf="!status" [disabled]="!_data.cartitems.length" (click)="_data.resetCart(_data.local.cartid)" id="reset">Reset the Cart</button>
-            <button  (click)="router.navigate(['/shop/order'])" mat-raised-button *ngIf="!status" id="payment" [disabled]="!_data.cartitems.length">Go To Payment</button>
-            <h1><b>Cart</b></h1>
+  <div [ngClass]="status ? 'items' : 'itemcollapse'">
+    <mat-tab-group class="allitems" [selectedIndex]="_data.ifsearch && 6">
+      <mat-tab label="Milk &  Eggs"
+        ><div class="sort">
+          <div *ngFor="let item of _data.productsArr">
+            <div
+              class="card"
+              *ngIf="
+                item.category_name == 'Milk' || item.category_name == 'Eggs'
+              "
+            >
+              <app-card class="card" [item]="item"></app-card>
             </div>
-            <br><hr>
-            <div class="cart">
-            <mat-card class="cartitem" *ngFor="let item of _data.cartitems"><img class="mini" src={{item.image}} alt="item"><span *ngIf="!status"><b>{{item.name}}</b></span><span *ngIf="!status">x{{item.qt}}</span> <span *ngIf="!status">{{item.price*item.qt| number : '1.2-2' }}₪</span>
-               <span>
-                <button mat-mini-fab  (click)="_data.deleteFromCart({cart_id:item.id, product_id:item.product_id})" *ngIf="!status" id="btn"><mat-icon id="mini">remove</mat-icon></button>   
-                <button mat-mini-fab (click)="_data.addFromCart({cart_id:item.id, product_id:item.product_id})" *ngIf="!status" id="btn"><mat-icon id="mini">add</mat-icon></button>
-                </span> 
-            </mat-card>
-            <br>
-            <h5><b>the total price: {{_data.thetotalprice | number : '1.2-2'}} ₪</b></h5>
-            <br><br><br>
+          </div></div
+      ></mat-tab>
+      <mat-tab label="Vegetables & Fruits">
+        <div class="sort">
+          <div *ngFor="let item of _data.productsArr">
+            <div
+              class="card"
+              *ngIf="
+                item.category_name == 'Vegetables' ||
+                item.category_name == 'Fruits'
+              "
+            >
+              <app-card class="card" [item]="item"></app-card>
             </div>
-    </div>
-    <div *ngIf="_data.local.role == 'admin'" >
-        <button (click)="openaddproduct()" class="addprod" mat-mini-fab>
-            <mat-icon class="btn">add</mat-icon>
-        </button>
-    </div>
-  
-    <div [ngClass]="status ? 'items' : 'itemcollapse'">
-        <mat-tab-group class="allitems" [selectedIndex]="_data.ifsearch && 6">
-            <mat-tab label="Milk &  Eggs"><div class="sort"> <div *ngFor="let item of _data.productsArr" > <div class="card" *ngIf="item.category_name == 'Milk' || item.category_name == 'Eggs'"><app-card class="card"  [item]="item" ></app-card></div></div> </div></mat-tab>
-            <mat-tab label="Vegetables & Fruits"> <div class="sort"> <div *ngFor="let item of _data.productsArr" > <div class="card" *ngIf="item.category_name == 'Vegetables' || item.category_name == 'Fruits'"><app-card class="card"  [item]="item" ></app-card></div></div> </div> </mat-tab>
-            <mat-tab label="Meat & Fish"><div class="sort"> <div *ngFor="let item of _data.productsArr" > <div class="card" *ngIf="item.category_name == 'Meat' || item.category_name == 'Fish'"><app-card class="card"  [item]="item" ></app-card></div></div> </div> </mat-tab>
-            <mat-tab label="Cereals & Sweets"><div class="sort"> <div *ngFor="let item of _data.productsArr" > <div class="card" *ngIf="item.category_name == 'Cereals' || item.category_name == 'Sweets'"><app-card class="card"  [item]="item" ></app-card></div></div> </div></mat-tab>
-            <mat-tab label="Wine & Drinks"><div class="sort"> <div *ngFor="let item of _data.productsArr" > <div class="card" *ngIf="item.category_name == 'Wine' || item.category_name == 'Drinks'"><app-card class="card"  [item]="item" ></app-card></div></div> </div> </mat-tab>
-            <mat-tab label="Cleaners & Bathroom utensils"> <div class="sort"> <div *ngFor="let item of _data.productsArr" > <div class="card" *ngIf="item.category_name == 'Cleaners' || item.category_name == 'Bathroom utensils'"><app-card class="card"  [item]="item" ></app-card></div></div> </div> </mat-tab>
-            <mat-tab label="All">  <div class="sort"> <app-card class="card" *ngFor="let item of _data.productsArr" [item]="item"></app-card></div>
-            </mat-tab>
-        </mat-tab-group>
-  
-    </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Meat & Fish"
+        ><div class="sort">
+          <div *ngFor="let item of _data.productsArr">
+            <div
+              class="card"
+              *ngIf="
+                item.category_name == 'Meat' || item.category_name == 'Fish'
+              "
+            >
+              <app-card class="card" [item]="item"></app-card>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Cereals & Sweets"
+        ><div class="sort">
+          <div *ngFor="let item of _data.productsArr">
+            <div
+              class="card"
+              *ngIf="
+                item.category_name == 'Cereals' ||
+                item.category_name == 'Sweets'
+              "
+            >
+              <app-card class="card" [item]="item"></app-card>
+            </div>
+          </div></div
+      ></mat-tab>
+      <mat-tab label="Wine & Drinks"
+        ><div class="sort">
+          <div *ngFor="let item of _data.productsArr">
+            <div
+              class="card"
+              *ngIf="
+                item.category_name == 'Wine' || item.category_name == 'Drinks'
+              "
+            >
+              <app-card class="card" [item]="item"></app-card>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Cleaners & Bathroom utensils">
+        <div class="sort">
+          <div *ngFor="let item of _data.productsArr">
+            <div
+              class="card"
+              *ngIf="
+                item.category_name == 'Cleaners' ||
+                item.category_name == 'Bathroom utensils'
+              "
+            >
+              <app-card class="card" [item]="item"></app-card>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="All">
+        <div class="sort">
+          <app-card
+            class="card"
+            *ngFor="let item of _data.productsArr"
+            [item]="item"
+          ></app-card>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>

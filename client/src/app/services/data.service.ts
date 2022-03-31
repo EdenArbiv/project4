@@ -27,6 +27,7 @@ export class DataService {
   numofmyprod:number
   types:any
   data:Product[]
+  searchin:boolean
 
   totalprice(){
   this.thetotalprice = this.cartitems.reduce(
@@ -244,8 +245,10 @@ export class DataService {
   searchInCart(form:any){
     if(!form.search){
       this.getProducts()
+      this.searchin = false
     }else{
       this.cartitems = this.cartitems.filter((item)=> item.name.toLocaleLowerCase().includes(form.search))
+      this.searchin = true
     }
   }
 

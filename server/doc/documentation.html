@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+              <th>Path</th>
+              <th>Internal path</th>
+              <th>Method</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>/</td>
+              <td>/getData</td>
+              <td>GET</td>
+              <td>bring number of products and orders, insert admin to the system.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/register1</td>
+              <td>POST</td>
+              <td>Checks if you have entered a valid ID, passwords and email and keeps them in variables.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/register2</td>
+              <td>POST</td>
+              <td>Checks whether you have entered city, street ,first name and last name, and insert new user to the users table in mysql.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/newcart</td>
+              <td>POST</td>
+              <td>Finds your latest cart, checks if it's closed -insert a new cart for the user and keep the id, and if it's open does nothing. else if there is no cart at all- insert a new one. </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/login</td>
+              <td>POST</td>
+              <td>Checks if the ID is valid, then if the password is correct, keeps a user data and brings the user's shopping cart, login to the system.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/logout</td>
+              <td>DELETE</td>
+              <td>logout from the system. (destroy the session)</td>
+            </tr>
+            <tr>
+              <td>/shop</td>
+              <td>/:cartid</td>
+              <td>GET</td>
+              <td>Brings all the products and the shopping cart of the user.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/addtocart</td>
+              <td>POST</td>
+              <td>Put in the cart the specific product selected with the quantity that the user put in.</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>/addfromcart</td>
+                <td>POST</td>
+                <td>Increases the quantity of the specific product +1</td>
+              </tr>
+            <tr>
+              <td></td>
+              <td>/search</td>
+              <td>POST</td>
+              <td>search in the shop - if there is something in the input search he filters the products, and if not he returns them all</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/deletefromcart</td>
+              <td>DELETE</td>
+              <td>Deleting the specific product quantity from the cart -1.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/resetcart/:cartid</td>
+              <td>DELETE</td>
+              <td>Reset the customer cart from all the products.</td>
+            </tr>
+            <tr>
+              <td>/orders</td>
+              <td>/userdata</td>
+              <td>GET</td>
+              <td>Brings details about the connected user (city and street).</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/neworder</td>
+              <td>POST</td>
+              <td>Produces a new order, closes a current cart.</td>
+            </tr>
+            <tr>
+              <td>/admin</td>
+              <td>/items</td>
+              <td>GET</td>
+              <td>Brings to the admin all the products.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/additem</td>
+              <td>POST</td>
+              <td>Add a product to the product list.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/:id</td>
+              <td>PUT</td>
+              <td>Update existing product information.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/types</td>
+              <td>GET</td>
+              <td>Brings all product categories for new product.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>/getdata</td>
+              <td>GET</td>
+              <td>Brings specific product details for update.</td>
+            </tr>
+            <tr>
+              <td>/:cartid</td>
+              <td></td>
+              <td>POST</td>
+              <td>Create and open a receipt file.</td>
+            </tr>
+            <tr>
+              <td>/static/:cartid</td>
+              <td></td>
+              <td>GET</td>
+              <td>Download the receipt file.</td>
+            </tr>
+          </table>
+          <br><br><br><br>
+          <a href="http://localhost:4200/home/login">Return the Shop</a>
+    </div>
+</body>
+</html>

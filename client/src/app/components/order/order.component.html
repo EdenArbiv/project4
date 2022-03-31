@@ -9,7 +9,7 @@
             </mat-form-field>
         </form> 
         <div class="products">
-        <mat-card class="cartitem" *ngFor="let item of _data.cartitems"><img class="mini" src={{item.image}} alt="item"><span [ngClass]="_data.cartitems.length < _data.numofmyprod && 'line'"><b>{{item.name}}</b></span><span>x{{item.qt}}</span> <span>{{item.price*item.qt| number : '1.2-2' }}₪</span></mat-card>
+        <mat-card class="cartitem" *ngFor="let item of _data.cartitems"><img class="mini" src={{item.image}} alt="item"><span [ngClass]="_data.searchin && 'line'"><b>{{item.name}}</b></span><span>x{{item.qt}}</span> <span>{{item.price*item.qt| number : '1.2-2' }}₪</span></mat-card>
         </div>
         <br>
         <h5><b>the total price: {{_data.thetotalprice | number : '1.2-2'}} ₪</b></h5>

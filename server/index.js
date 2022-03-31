@@ -29,6 +29,7 @@ app.use('/admin', require('./routes/admin'))
 app.use('/orders', require('./routes/orders'))
 
 app.use(express.static('receipts'))
+app.use(express.static('doc'))
 app.post('/:cartid',async (req,res)=> {
     const {cartid} = req.params
     const cartitems = await SQL(`SELECT cartitems.id,
